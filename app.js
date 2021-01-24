@@ -5,6 +5,7 @@ const app = express();
 const port = 5000;
 
 const films = require('./routes/films');
+const categories = require('./routes/categories');
 
 // require('./startup/connect');
 mongoose.connect('mongodb://localhost/playground', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -14,6 +15,7 @@ mongoose.connect('mongodb://localhost/playground', { useNewUrlParser: true, useU
 app.use(express.json());
 app.use(helmet());
 app.use('/api/movies', films);
+app.use('/api/categories', categories);
 
 
 

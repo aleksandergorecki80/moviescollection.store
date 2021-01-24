@@ -11,7 +11,7 @@ const filmSchema = new mongoose.Schema({
     },
     format: {
         type: String,
-        enum: ['DVD', 'BluRey']
+        // enum: ['DVD', 'BluRey']
     },
     poster: String,
     description: String,
@@ -30,7 +30,8 @@ const Film = mongoose.model('film', filmSchema); // jest to klasa dlatego z duż
 function validateFilm(film) {
     const schema = {
         title: Joi.string().min(2).max(255).required(),
-        format: Joi.string().valid('DVD', 'BluRey').required(),
+        // format: Joi.string().valid('DVD', 'BluRey').required(),
+        format: Joi.string().required(),
         poster: Joi.string(),
         description: Joi.string(),
         year: Joi.number(),
