@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const express = require('express');
 const app = express();
-const port = 5000;
+const dotenv = require('dotenv');
+dotenv.config();
+const port = process.env.PORT;
 
 const films = require('./routes/films');
 const categories = require('./routes/categories');
