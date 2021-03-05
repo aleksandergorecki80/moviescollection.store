@@ -21,10 +21,6 @@ app.use('/api/movies', films);
 app.use('/api/categories', categories);
 app.use('/api/generes', generes);
 
-
-
-
-
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 });
