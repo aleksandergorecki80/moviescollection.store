@@ -38,6 +38,7 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
+    console.log(req.params.id)
     const result = validateFilm(req.body);
     if (result.error) return res.status(400).send(result.error.details[0].message);
         const film = await Film.findByIdAndUpdate(req.params.id, {
