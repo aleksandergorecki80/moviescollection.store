@@ -1,5 +1,21 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    //   cb(null, file.fieldname + '-' + uniqueSuffix)
+      cb(null, file.originalname)
+    }
+  })
+  
+  var upload = multer({ storage: storage })
+
 const { validateFilm, Film } = require('../models/filmsModel');
 
 
@@ -16,17 +32,19 @@ router.get('/:id', async (req, res) => {
         res.send(film);
 });
 
-router.post('/', async (req, res) => {
+router.post('/', upload.single('posterFile'), async (req, res) => {
+    console.log(req.file)
+    console.log(req.body)
     const result = validateFilm(req.body);
     if (result.error) return res.status(400).send(result.error.details[0].message);
     const film = new Film({
         title: req.body.title,
         format: req.body.format,
-        poster: req.body.poster,
-        description: req.body.description,
-        year: req.body.year,
-        generes: req.body.generes,
-        isInCollection: req.body.isInCollection,
+        posterName: req.body.posterName,
+        // description: req.body.description,
+        year: parseInt(req.body.year),
+        // generes: req.body.generes,
+        // isInCollection: req.body.isInCollection,
         condition: req.body.condition
     });
     try {
@@ -38,7 +56,6 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-    console.log(req.params.id)
     const result = validateFilm(req.body);
     if (result.error) return res.status(400).send(result.error.details[0].message);
         const film = await Film.findByIdAndUpdate(req.params.id, {
@@ -47,7 +64,7 @@ router.put('/:id', async (req, res) => {
                 format: req.body.format,
                 poster: req.body.poster,
                 description: req.body.description,
-                year: req.body.year,
+                year: parseInt(req.body.year),
                 generes: req.body.generes,
                 isInCollection: req.body.isInCollection,
                 condition: req.body.condition

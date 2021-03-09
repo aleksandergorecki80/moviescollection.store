@@ -15,7 +15,8 @@ const filmSchema = new mongoose.Schema({
     },
     poster: String,
     description: String,
-    year: Date,
+    // year: Date,
+    year: Number,
     generes: [String],
     date: { type: Date, default: Date.now },
     isInCollection: Boolean,
@@ -32,11 +33,11 @@ function validateFilm(film) {
         title: Joi.string().min(2).max(255).required(),
         // format: Joi.string().valid('DVD', 'BluRey').required(),
         format: Joi.string().required(),
-        poster: Joi.string(),
-        description: Joi.string(),
+        posterName: Joi.string(),
+        // description: Joi.string(),
         year: Joi.number(),
-        generes: Joi.string(),
-        isInCollection: Joi.boolean(),
+        // generes: Joi.string(),
+        // isInCollection: Joi.boolean(),
         condition: Joi.string()
     };
     return Joi.validate(film, schema);
