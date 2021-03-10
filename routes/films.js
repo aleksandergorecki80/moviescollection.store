@@ -5,7 +5,7 @@ const multer = require('multer');
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, 'uploads/')
+      cb(null, '../frontend/public/uploads/')
     },
     filename: function (req, file, cb) {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
@@ -32,8 +32,15 @@ router.get('/:id', async (req, res) => {
         res.send(film);
 });
 
-router.post('/', upload.single('posterFile'), async (req, res) => {
+router.post('/upload', upload.single('posterFile'), (req, res) => {
     console.log(req.file)
+    if(req.file === null){
+        return res.status(400).json({msg: 'No file uploaded'})
+    }
+    res.json({filename: req.file.filename})
+})
+
+router.post('/',  async (req, res) => {
     console.log(req.body)
     const result = validateFilm(req.body);
     if (result.error) return res.status(400).send(result.error.details[0].message);

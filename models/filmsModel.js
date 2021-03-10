@@ -13,13 +13,16 @@ const filmSchema = new mongoose.Schema({
         type: String,
         // enum: ['DVD', 'BluRey']
     },
-    poster: String,
-    description: String,
+    posterName: {
+        type: String,
+        required: false
+    },
+    // description: String,
     // year: Date,
     year: Number,
-    generes: [String],
-    date: { type: Date, default: Date.now },
-    isInCollection: Boolean,
+    // generes: [String],
+    // date: { type: Date, default: Date.now },
+    // isInCollection: Boolean,
     condition: {
         type: String,
         required: function () { return this.isInCollection; }
