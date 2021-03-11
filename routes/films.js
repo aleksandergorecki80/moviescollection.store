@@ -41,7 +41,6 @@ router.post('/upload', upload.single('posterFile'), (req, res) => {
 })
 
 router.post('/',  async (req, res) => {
-    console.log(req.body)
     const result = validateFilm(req.body);
     if (result.error) return res.status(400).send(result.error.details[0].message);
     const film = new Film({
