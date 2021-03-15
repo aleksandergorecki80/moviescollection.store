@@ -41,6 +41,7 @@ router.post('/upload', upload.single('posterFile'), (req, res) => {
 })
 
 router.post('/',  async (req, res) => {
+
     const result = validateFilm(req.body);
     if (result.error) return res.status(400).send(result.error.details[0].message);
     const film = new Film({
@@ -68,11 +69,11 @@ router.put('/:id', async (req, res) => {
             $set: {
                 title: req.body.title,
                 format: req.body.format,
-                poster: req.body.poster,
-                description: req.body.description,
+                posterName: req.body.posterName,
+                // description: req.body.description,
                 year: parseInt(req.body.year),
-                generes: req.body.generes,
-                isInCollection: req.body.isInCollection,
+                // generes: req.body.generes,
+                // isInCollection: req.body.isInCollection,
                 condition: req.body.condition
             }
         }, { new: true, useFindAndModify: false });
