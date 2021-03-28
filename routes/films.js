@@ -23,7 +23,7 @@ var upload = multer({
       return cb(new Error('Only .jpg and .jpeg format allowed!'));
     }
   },
-  limits: {fileSize: 1000}
+  limits: {fileSize: 1048576}
 });
 
 const { validateFilm, Film } = require('../models/filmsModel');
