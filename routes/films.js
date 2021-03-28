@@ -23,6 +23,7 @@ var upload = multer({
       return cb(new Error('Only .jpg and .jpeg format allowed!'));
     }
   },
+  limits: {fileSize: 1000}
 });
 
 const { validateFilm, Film } = require('../models/filmsModel');
@@ -38,11 +39,19 @@ router.get('/:id', async (req, res) => {
   res.send(film);
 });
 
-router.post('/upload', upload.single('posterFile'), (req, res) => {
-  if (req.file === null) {
-    return res.status(400).json({ msg: 'No file uploaded' });
-  }
-  res.json({ filename: req.file.filename });
+const uploadSingleImage = upload.single('posterFile');
+router.post('/upload', (req, res) => {
+    uploadSingleImage(req, res, (err) => {
+        if (err) {
+            return res.status(400).send({ message: err.message })
+        }
+        if (req.file === null) {
+            return res.status(400).json({ message: 'No file uploaded' });
+        }
+        res.status(200).json({
+            filename: req.file.filename
+        })
+    })
 });
 
 router.post('/', async (req, res) => {
