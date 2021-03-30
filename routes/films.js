@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
+const { validateFilm, Film } = require('../models/filmsModel');
+
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -26,7 +28,7 @@ var upload = multer({
   limits: {fileSize: 1048576}
 });
 
-const { validateFilm, Film } = require('../models/filmsModel');
+
 
 router.get('/', async (req, res) => {
   const films = await Film.find().sort('title');
@@ -55,20 +57,21 @@ router.post('/upload', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  console.log(req.body);
+  console.log(req.body, 'req.body');
   const result = validateFilm(req.body);
   if (result.error)
     return res.status(400).send(result.error.details[0].message);
   const film = new Film({
     title: req.body.title,
     format: req.body.format,
-    posterName: req.body.posterName,
+    posterName: req.body.posterName ? req.body.posterName : 'no-image.svg',
     // description: req.body.description,
     year: req.body.year,
     // generes: req.body.generes,
     // isInCollection: req.body.isInCollection,
     condition: req.body.condition,
   });
+  console.log(film, 'film')
   try {
     const result = await film.save();
     res.send(result);

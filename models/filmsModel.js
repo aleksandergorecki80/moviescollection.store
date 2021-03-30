@@ -15,13 +15,10 @@ const filmSchema = new mongoose.Schema({
     },
     posterName: {
         type: String,
-        required: false
     },
     // description: String,
-    // year: Date,
     year: Number,
     // generes: [String],
-    // date: { type: Date, default: Date.now },
     // isInCollection: Boolean,
     condition: {
         type: String,
@@ -34,14 +31,13 @@ const Film = mongoose.model('film', filmSchema); // jest to klasa dlatego z duż
 function validateFilm(film) {
     const schema = {
         title: Joi.string().min(2).max(255).required(),
-        // format: Joi.string().valid('DVD', 'BluRey').required(),
         format: Joi.string().required(),
-        posterName: Joi.string(),
+        posterName: Joi.string().allow(''),
         // description: Joi.string(),
         year: Joi.number(),
         // generes: Joi.string(),
         // isInCollection: Joi.boolean(),
-        condition: Joi.string()
+        condition: Joi.string().allow('')
     };
     return Joi.validate(film, schema);
 }
