@@ -29,7 +29,7 @@ const filmSchema = new mongoose.Schema({
 const Film = mongoose.model('film', filmSchema); // jest to klasa dlatego z dużej litery
 
 function validateFilm(film) {
-    const schema = {
+    const schema = Joi.object({
         title: Joi.string().min(2).max(255).required(),
         format: Joi.string().required(),
         posterName: Joi.string().allow(''),
@@ -38,8 +38,8 @@ function validateFilm(film) {
         // generes: Joi.string(),
         // isInCollection: Joi.boolean(),
         condition: Joi.string().allow('')
-    };
-    return Joi.validate(film, schema);
+    });
+    return schema.validate(film);
 }
 
 module.exports.Film = Film;
