@@ -4,11 +4,15 @@ const Joi = require('joi');
 const UserSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        minlength: 5,
+        maxlength: 25
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        minlength: 5,
+        maxlength: 50
     },
     password: {
         type: String,
@@ -24,9 +28,10 @@ const User = mongoose.model('User', UserSchema);
 
 function validateUser(user) {
     const schema = Joi.object ({
-        name: Joi.string().min(3).max(25).required(),
-        email: Joi.string().email().required(),
-        password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{8,20}$')),
+        name: Joi.string().min(5).max(25).required(),
+        email: Joi.string().email().required().min(5).max(50),
+        // password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{8,20}$')),
+        password: Joi.string(),
         repeat_password: Joi.ref('password'),
     });
     // return Joi.validate(user, schema);

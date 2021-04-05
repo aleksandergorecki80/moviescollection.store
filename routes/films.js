@@ -1,8 +1,8 @@
+const auth = require('../middleware/auth.js');
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const { validateFilm, Film } = require('../models/filmsModel');
-
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -56,7 +56,7 @@ router.post('/upload', (req, res) => {
     })
 });
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   console.log(req.body, 'req.body');
   const result = validateFilm(req.body);
   if (result.error)
