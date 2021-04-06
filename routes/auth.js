@@ -21,13 +21,11 @@ router.post('/', async(req, res) => {
     if(!user){
     return res.status(400).json({"error": "Invalid email or password."})
     }
-
     // Checking if password matches
-    const validPassword = await bcryptjs.compare(req.body.password, user.password)
+    const validPassword = await bcryptjs.compare(password, user.password);
     if(!validPassword){
         return res.status(400).json({"error": "Invalid email or password."})
     }
-
     const token = jwt.sign({ _id: user._id}, jwtPrivateKey);
     res.header('x-auth-token', token).send('Logged');
 });
@@ -37,7 +35,6 @@ function validate(req) {
         email: Joi.string().email().required().min(5).max(50),
         password: Joi.string(),
     });
-    // return Joi.validate(user, schema);
     return schema.validate(req);
 }
 
