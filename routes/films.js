@@ -57,7 +57,7 @@ router.post('/upload', (req, res) => {
 });
 
 router.post('/', auth, async (req, res) => {
-  console.log(req.body, 'req.body');
+  console.log(req.user, 'req.user');
   const result = validateFilm(req.body);
   if (result.error)
     return res.status(400).send(result.error.details[0].message);
@@ -65,11 +65,9 @@ router.post('/', auth, async (req, res) => {
     title: req.body.title,
     format: req.body.format,
     posterName: req.body.posterName ? req.body.posterName : 'no-image.svg',
-    // description: req.body.description,
     year: req.body.year,
-    // generes: req.body.generes,
-    // isInCollection: req.body.isInCollection,
     condition: req.body.condition,
+    createdBy: req.user._id
   });
   console.log(film, 'film')
   try {

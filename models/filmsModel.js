@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
+const { User } = require('./UserModel');
 
 const filmSchema = new mongoose.Schema({
     title: {
@@ -11,18 +12,18 @@ const filmSchema = new mongoose.Schema({
     },
     format: {
         type: String,
-        // enum: ['DVD', 'BluRey']
     },
     posterName: {
         type: String,
     },
-    // description: String,
     year: Number,
-    // generes: [String],
-    // isInCollection: Boolean,
     condition: {
         type: String,
         required: function () { return this.isInCollection; }
+    },
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 });
 
