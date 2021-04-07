@@ -30,8 +30,9 @@ var upload = multer({
 
 
 
-router.get('/', async (req, res) => {
-  const films = await Film.find().sort('title');
+router.get('/', auth, async (req, res) => {
+  console.log(req.user, 'req.user');
+  const films = await Film.find({ createdBy: req.user._id}).sort('title');
   res.send(films);
 });
 
@@ -57,7 +58,6 @@ router.post('/upload', (req, res) => {
 });
 
 router.post('/', auth, async (req, res) => {
-  console.log(req.user, 'req.user');
   const result = validateFilm(req.body);
   if (result.error)
     return res.status(400).send(result.error.details[0].message);
