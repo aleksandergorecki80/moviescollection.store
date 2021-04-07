@@ -10,7 +10,6 @@ var storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    //   cb(null, file.fieldname + '-' + uniqueSuffix)
     cb(null, uniqueSuffix + '-' + file.originalname);
   },
 });
@@ -25,14 +24,11 @@ var upload = multer({
       return cb(new Error('Only .jpg and .jpeg format allowed!'));
     }
   },
-  limits: {fileSize: 1048576}
+  limits: { fileSize: 1048576 },
 });
 
-
-
 router.get('/', auth, async (req, res) => {
-  console.log(req.user, 'req.user');
-  const films = await Film.find({ createdBy: req.user._id}).sort('title');
+  const films = await Film.find({ createdBy: req.user._id }).sort('title');
   res.send(films);
 });
 
@@ -44,17 +40,17 @@ router.get('/:id', async (req, res) => {
 
 const uploadSingleImage = upload.single('posterFile');
 router.post('/upload', (req, res) => {
-    uploadSingleImage(req, res, (err) => {
-        if (err) {
-            return res.status(400).send({ message: err.message })
-        }
-        if (req.file === null) {
-            return res.status(400).json({ message: 'No file uploaded' });
-        }
-        res.status(200).json({
-            filename: req.file.filename
-        })
-    })
+  uploadSingleImage(req, res, (err) => {
+    if (err) {
+      return res.status(400).send({ message: err.message });
+    }
+    if (req.file === null) {
+      return res.status(400).json({ message: 'No file uploaded' });
+    }
+    res.status(200).json({
+      filename: req.file.filename,
+    });
+  });
 });
 
 router.post('/', auth, async (req, res) => {
@@ -67,9 +63,8 @@ router.post('/', auth, async (req, res) => {
     posterName: req.body.posterName ? req.body.posterName : 'no-image.svg',
     year: req.body.year,
     condition: req.body.condition,
-    createdBy: req.user._id
+    createdBy: req.user._id,
   });
-  console.log(film, 'film')
   try {
     const result = await film.save();
     res.send(result);
@@ -89,10 +84,7 @@ router.put('/:id', async (req, res) => {
         title: req.body.title,
         format: req.body.format,
         posterName: req.body.posterName,
-        // description: req.body.description,
         year: req.body.year,
-        // generes: req.body.generes,
-        // isInCollection: req.body.isInCollection,
         condition: req.body.condition,
       },
     },
