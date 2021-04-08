@@ -6,7 +6,7 @@ const { validateFilm, Film } = require('../models/filmsModel');
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../frontend/public/uploads/');
+    cb(null, '../frontend/build/uploads/');
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
@@ -40,6 +40,7 @@ router.get('/:id', async (req, res) => {
 
 const uploadSingleImage = upload.single('posterFile');
 router.post('/upload', (req, res) => {
+  
   uploadSingleImage(req, res, (err) => {
     if (err) {
       return res.status(400).send({ message: err.message });
