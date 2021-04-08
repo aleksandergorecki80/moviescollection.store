@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const express = require('express');
+const path = require('path');
 const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
@@ -17,6 +18,13 @@ const auth = require('./routes/auth');
 app.use('/api/movies', films);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
+
+// Serve static assets
+
+// app.use(express.static('frontend/build'));
+// app.get('^(?!/api\/)[\/\w\.\,-]*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+// })
 
 // const port = process.env.PORT;
 const port = 5000;
