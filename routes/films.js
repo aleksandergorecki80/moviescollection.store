@@ -32,7 +32,7 @@ router.get('/', auth, async (req, res) => {
   res.send(films);
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
   const film = await Film.findById(req.params.id);
   if (!film) return res.status(404).send('The film with given Id not found!');
   res.send(film);
@@ -74,7 +74,7 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
   const result = validateFilm(req.body);
   if (result.error)
     return res.status(400).send(result.error.details[0].message);
@@ -95,7 +95,7 @@ router.put('/:id', async (req, res) => {
   res.send(film);
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
   const result = await Film.findByIdAndRemove(req.params.id, {
     useFindAndModify: false,
   });
