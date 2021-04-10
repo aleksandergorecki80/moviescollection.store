@@ -39,7 +39,7 @@ router.get('/:id', auth, async (req, res) => {
 });
 
 const uploadSingleImage = upload.single('posterFile');
-router.post('/upload', (req, res) => {
+router.post('/upload', auth, (req, res) => {
   
   uploadSingleImage(req, res, (err) => {
     if (err) {

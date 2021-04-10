@@ -5,7 +5,7 @@ dotenv.config();
 function auth(req, res, next) {
   const token = req.header('x-auth-token');
   if (!token) {
-    return res.status(401).send('Acces denied.');
+    return res.status(401).json({message: "Acces denied."});
   }
   const jwtPrivateKey = process.env.JWT_PRIVATE_KEY;
 
