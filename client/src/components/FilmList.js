@@ -5,9 +5,14 @@ import { fetchFilmsFromDB } from '../actions/filmActions';
 
 export class FilmList extends React.Component {
   componentDidMount() {
-    if (this.props.user.token) {
+    if (localStorage.getItem('token')) {
       this.props.fetchFilmsFromDB(this.props.user.token);
+    } else {
+      this.props.history.push({
+        pathname: '/Login'
+      });
     }
+
   }
   componentDidUpdate(prevProps, prevState) {
     if (!prevProps.user.token && this.props.user.token) {
@@ -23,7 +28,7 @@ export class FilmList extends React.Component {
         })}
       </div>
     ) : (
-      <div className="empty">Nothing to display</div>
+      <div className="empty">Your library is empty.</div>
     );
   }
 }

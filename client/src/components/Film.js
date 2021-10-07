@@ -14,7 +14,7 @@ const Film = (props) => {
           />
         ) : (
           <img
-            src={`/uploads/${props.film.posterName}`}
+            src={`${props.film.posterName}`}
             alt="cover"
             className="thumbnail-cover"
           />

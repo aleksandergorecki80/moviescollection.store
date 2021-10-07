@@ -5,10 +5,13 @@ const { User, validateUser } = require('../models/UserModel');
 const mongoose = require('mongoose');
 const bcryptjs = require('bcryptjs');
 const Joi = require('joi');
+const config = require('config');
+const jwtPrivateKey = config.get('jwt_private_key');
 
-const dotenv = require('dotenv');
-dotenv.config();
-const jwtPrivateKey = process.env.JWT_PRIVATE_KEY;
+
+// const dotenv = require('dotenv');
+// dotenv.config();
+// const jwtPrivateKey = process.env.JWT_PRIVATE_KEY;
 
 router.post('/', async (req, res) => {
   const result = validate(req.body);

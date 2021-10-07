@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import React from 'react';
 import { fetchUserData } from '../actions/userActions';
+import { NavLink } from 'react-router-dom';
 
 class Login extends React.Component {
   state = {
@@ -114,6 +115,9 @@ class Login extends React.Component {
           })}
           <input type="submit" value="Login" className="btn btn-add" />
         </form>
+        <div>
+          Do not have an account? <NavLink to="/register" className="a-colored">Register</NavLink>
+        </div>
       </div>
     );
   }

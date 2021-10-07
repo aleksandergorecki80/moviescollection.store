@@ -182,7 +182,7 @@ class Register extends React.Component {
           />
         </form>
         <div>
-          Have an account? <NavLink to="/login">Login</NavLink>
+          Have an account? <NavLink to="/login" className="a-colored">Login</NavLink>
         </div>
       </div>
     );

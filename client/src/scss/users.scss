@@ -8,6 +8,7 @@
 }
 
 .log-register-links {
+    color: $third-color;
     font-size: 0.9em;
     padding: 0.1em;
     display: flex;
@@ -17,8 +18,8 @@
         margin-right: 0.5em;
     }
     .log-out {
+        color: $third-color;
         background: transparent;
-        color: $font-color;
         border: none;
         cursor: pointer;
         &:hover {

@@ -24,7 +24,7 @@ const FilmDetails = (props) => {
           film.posterName.startsWith('https://') ? (
             <img src={film.posterName} alt="cover" />
           ) : (
-            <img src={`/uploads/${film.posterName}`} alt="cover" />
+            <img src={`../${film.posterName}`} alt="cover" />
           )}
         </p>
         <h2>

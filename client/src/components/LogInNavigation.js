@@ -10,7 +10,7 @@ class LogInNavigation extends React.Component {
     localStorage.setItem('films', '');
     this.props.logOutUser();
     this.props.resetFilmList();
-    this.props.history.push('/');
+    this.props.history.push('/login');
   };
 
   componentDidMount() {

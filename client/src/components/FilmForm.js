@@ -131,8 +131,13 @@ class FilmForm extends React.Component {
   onHanleFile = (event) => {
     const formData = new FormData();
     formData.append('posterFile', event.target.files[0]);
+    const userToken = localStorage.getItem('token');
     axios
-      .post('/api/movies/upload', formData)
+      .post('/api/movies/upload', formData, {
+        headers: {
+          'x-auth-token': userToken,
+        },
+      })
       .then((res) => {
         this.setState({
           errorMessage: '',
@@ -185,7 +190,7 @@ class FilmForm extends React.Component {
   render() {
     const displayPoster = () => {
       return !this.state.film.posterName.startsWith('https://') ? (
-        <img src={`/uploads/${this.state.film.posterName}`} alt="cover" />
+        <img src={`${this.state.film.posterName}`} alt="cover" />
       ) : (
         <img src={this.state.film.posterName} alt="cover" />
       );
