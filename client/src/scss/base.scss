@@ -1,0 +1,171 @@
+* {
+  // border: 1px solid red;
+  box-sizing: border-box;
+}
+/* fonts */
+@font-face {
+  font-family: "Lato";
+  src: local("Lato"), url(./fonts/Lato-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "PermanentMarker";
+  src: local("PermanentMarker"), url(./fonts/PermanentMarker-Regular.ttf) format("truetype");
+}
+h1,
+h2,
+h3,
+h4 {
+  font-weight: normal;
+}
+h1 {
+  font-size: 1.2em;
+  text-align: center;
+}
+
+body {
+  // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  //   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  //   sans-serif;
+  font-family: "Lato";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $theme-color;
+  color: $font-color;
+  font-size: 14px;
+}
+.logo-div {
+  display: flex;
+  align-items: center;
+}
+.logo-paragraph {
+  font-family: "PermanentMarker";
+  font-size: xx-large;
+  color: $additional-color;
+  position: relative;
+  transform: translateX(-20px);
+  -webkit-text-stroke: 2px black;
+}
+
+.btn {
+  appearance: auto;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-align: center;
+  align-items: flex-start;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin: 0em;
+  font: 400 20px Arial;
+  padding: 15px;
+  border: none;
+}
+
+@mixin buttonHover($color) {
+  background-color: darken($color, 10%);
+}
+
+.btn-delete,
+.btn-edit {
+  width: 400px;
+  max-width: 80%;
+}
+
+.btn-delete {
+  background-color: $button-background-color;
+  &:hover {
+    @include buttonHover($button-background-color);
+  }
+}
+
+.btn-edit {
+  background-color: $third-color;
+  color: $theme-color;
+  &:hover {
+    @include buttonHover($third-color);
+  }
+}
+
+.btn-add {
+  display: block;
+  background-color: $additional-color;
+  &:hover {
+    @include buttonHover($additional-color);
+  }
+}
+
+.btn-inline {
+  display: inline-block;
+}
+
+.btn-pagination {
+  background-color: $button-background-color;
+  font-size: 1em;
+  padding: 5px;
+  width: 150px;
+  margin: 5px;
+}
+
+.a-no-underline {
+  text-decoration: none !important;
+}
+
+form {
+  width: 90%;
+  max-width: 800px;
+}
+
+input,
+select {
+  padding: 10px;
+  outline: none;
+  width: 100%;
+}
+
+input[type="radio"] {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+}
+
+.add-and-edit {
+  .radio-group {
+    label {
+      display: inline-block;
+      color: $third-color;
+      border: 1px solid $third-color;
+      padding: 20px;
+      cursor: pointer;
+    }
+  }
+}
+
+input[type="radio"]:checked + label {
+  background-color: $third-color;
+  color: $theme-color;
+}
+
+.poster {
+  #upload-poster {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+  }
+  label {
+    border: 2px solid $third-color;
+    border-radius: 10px;
+    padding: 20px;
+    display: inline-block;
+    margin: 20px 0;
+    color: $third-color;
+    cursor: pointer;
+  }
+}
+
+a {
+  color: $font-color;
+  &:hover {
+    text-decoration: underline;
+  }
+}

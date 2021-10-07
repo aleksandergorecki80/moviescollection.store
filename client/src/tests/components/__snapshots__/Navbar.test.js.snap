@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Navbar 1`] = `
+<div
+  className="navbar"
+>
+  <h1>
+    The collection of my films.
+  </h1>
+  <[object Object]
+    to="/"
+  >
+    Home
+  </[object Object]>
+  <[object Object]
+    to="/add_film"
+  >
+    Add new film
+  </[object Object]>
+</div>
+`;

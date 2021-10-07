@@ -1,0 +1,168 @@
+.film-details {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .btn {
+    margin-bottom: 15px;
+  }
+}
+/* mobile styles */
+.container {
+  padding: 10px;
+}
+.header-div {
+  .navbar {
+    display: none;
+    .btn {
+      padding: 10px;
+      font-size: 1em;
+    }
+  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1em;
+  .hamburger-menu {
+    img {
+      cursor: pointer;
+    }
+  }
+}
+p {
+  // text-align: center;
+  font-size: 1.2em;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .validate-error {
+    font-size: 1em;
+    color: $button-background-color;
+  }
+  input,
+  select {
+    margin: 10px 0;
+  }
+  img {
+    max-width: 90%;
+    width: 400px;
+  }
+}
+.add-and-edit {
+  .btn {
+    width: 100%;
+  }
+  a {
+    color: $third-color;
+  }
+}
+.search {
+  .form-content {
+    .btn {
+      width: 100%;
+    }
+  }
+  .films-list {
+    margin-top: 20px;
+  }
+}
+.films-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  .btn {
+    display: block;
+    width: 100%;
+    font-size: small;
+    margin-top: 1em;
+    padding: 0.5em 0;
+  }
+}
+.thumbnail {
+  text-align: center;
+}
+.thumbnail-cover {
+  width: 100%;
+  object-fit: cover;
+}
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* small tablets styles */
+@media screen and (min-width: 620px) {
+  body {
+    background-color: blanchedalmond;
+  }
+  .films-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .header-div {
+    .navbar {
+      display: block;
+      a {
+        margin-right: 10px;
+      }
+      a:last-child {
+        margin: 0;
+      }
+    }
+    .hamburger-menu {
+      display: none;
+    }
+    .btn-nav {
+      display: inline-block;
+      width: 130px;
+    }
+  }
+  .search {
+    .form-content {
+      display: flex;
+      width: 90%;
+      .btn {
+        width: auto;
+      }
+    }
+  }
+}
+
+/* large tablets and laptops styles */
+@media screen and (min-width: 960px) {
+  body {
+    font-size: 18px;
+  }
+  .films-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .header-div {
+    .btn-nav {
+      display: inline-block;
+      width: 150px;
+    }
+  }
+}
+
+/* desktop styles */
+@media screen and (min-width: 1200px) {
+  body {
+    font-size: 20px;
+  }
+  .container {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  .films-list {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .header-div {
+    .btn-nav {
+      display: inline-block;
+      width: 200px;
+    }
+  }
+}

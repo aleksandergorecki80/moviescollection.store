@@ -1,0 +1,39 @@
+.year-picker {
+    display: block;
+}
+.year-picker-container {
+    display: flex;
+    position: absolute;
+    background-color: white;
+    color: black;
+}
+.year-picker-dates {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    span {
+        padding: 10px;
+        border: 1px solid grey;
+    }
+}
+
+.next,
+.previous {
+    display: inline-block;
+    width: 0.4em;
+    height: 0.4em;
+    border-right: 0.2em solid black;
+    border-top: 0.2em solid black;
+    margin: 0.5em;
+    cursor: pointer;
+}
+
+.next {
+    transform: rotate(45deg);
+}
+
+.previous {
+    transform: rotate(-135deg);
+}
+.hidden {
+    visibility: hidden;
+}

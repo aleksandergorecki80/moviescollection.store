@@ -1,0 +1,31 @@
+.register,
+.login {
+    p {
+        font-size: 0.9em;
+        text-align: center;
+        color: $error-color;
+    }
+}
+
+.log-register-links {
+    font-size: 0.9em;
+    padding: 0.1em;
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+    span {
+        margin-right: 0.5em;
+    }
+    .log-out {
+        background: transparent;
+        color: $font-color;
+        border: none;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    a {
+        margin-right: 10px;
+    }
+}
