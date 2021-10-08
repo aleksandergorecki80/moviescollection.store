@@ -40,7 +40,6 @@ router.get('/:id', auth, async (req, res) => {
 
 const uploadSingleImage = upload.single('posterFile');
 router.post('/upload', auth, (req, res) => {
-  
   uploadSingleImage(req, res, (err) => {
     if (err) {
       return res.status(400).send({ message: err.message });

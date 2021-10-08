@@ -21,9 +21,10 @@ app.use('/api/users', users);
 app.use('/api/auth', auth);
 
 // STATIC IMAGES
-const imagesDir = require('path').join(__dirname,'/uploads');
+const imagesDir = path.join(__dirname,'/uploads');
 app.use(express.static(imagesDir));
 
+console.log(__dirname, '__dirname')
 
 // PRODUCTION STATIC ASSETS
 if (process.env.NODE_ENV === 'production') {

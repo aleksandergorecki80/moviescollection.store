@@ -16,7 +16,7 @@ const Header = (props) => {
         </NavLink>
         <div className="navbar">
           <NavLink to="/" className="btn btn-add a-no-underline btn-nav">
-            Home
+            My library
           </NavLink>
           <NavLink
             to="/search_film"
