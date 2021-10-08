@@ -139,6 +139,7 @@ class FilmForm extends React.Component {
         },
       })
       .then((res) => {
+
         this.setState({
           errorMessage: '',
           film: {
@@ -188,13 +189,13 @@ class FilmForm extends React.Component {
   }
 
   render() {
-    const displayPoster = () => {
-      return !this.state.film.posterName.startsWith('https://') ? (
-        <img src={`${this.state.film.posterName}`} alt="cover" />
-      ) : (
-        <img src={this.state.film.posterName} alt="cover" />
-      );
-    };
+    // const displayPoster = () => {
+    //   return !this.state.film.posterName.startsWith('https://') ? (
+    //     <img src={`${this.state.film.posterName}`} alt="cover" />
+    //   ) : (
+    //     <img src={this.state.film.posterName} alt="cover" />
+    //   );
+    // };
 
     const pleaseRegisterLoginMessage = () => {
       return (
@@ -289,7 +290,7 @@ class FilmForm extends React.Component {
             </label>
           </div>
           <div className="img-column">
-            {this.state.film.posterName && displayPoster()}
+            {this.state.film.posterName && <img src={`../${this.state.film.posterName}`} alt="cover" />}
             {this.state.errorMessage && (
               <p className="error-message">{this.state.errorMessage}</p>
             )}

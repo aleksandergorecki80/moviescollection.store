@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import Modal from './components/Modal';
 import Header from './components/Header';
 import FilmList from './components/FilmList';
@@ -14,15 +14,17 @@ import { createBrowserHistory } from 'history';
 import FilmDetails from './components/FilmDetails';
 import rootReducer from './reducers/rootReducer';
 import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const newHistory = createBrowserHistory();
 
+const initialState = {};
+const middlewares = [thunk]
+
 const store = createStore(
-  rootReducer,
-  compose(
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
+    rootReducer,
+    initialState,
+    composeWithDevTools(applyMiddleware(...middlewares))
 );
 
 class App extends React.Component {
@@ -55,7 +57,7 @@ class App extends React.Component {
               <Route path="/search_film" component={SearchForFilmData} />
               <Route path="/add_film" component={FilmForm} />
               <Route path="/film/:id" component={FilmDetails} />
-              <Route path="/edit_film/:id" component={FilmForm} />
+              <Route path="/editfilm/:id" component={FilmForm} />
               <Route path="/confirm_data" component={FilmForm} />
               <Route path="/register" component={Register} />
               <Route path="/login" component={Login} />

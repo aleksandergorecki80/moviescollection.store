@@ -37,7 +37,7 @@ const FilmDetails = (props) => {
         </button>
 
         <Link
-          to={`/edit_film/${props.match.params.id}`}
+          to={`/editfilm/${film._id}`}
           className="a-no-underline btn btn-edit"
         >
           {/* <button className="btn btn-delete"> */}
